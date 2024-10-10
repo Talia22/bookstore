@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Shop</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <header>
+        <h1>Book Shop</h1>
+    </header>
+    <div class="container">
+        <div class="info">
+            <div class="top">
+                <button> + New Book</button>
+                <div class="top">
+                    <p>Load Data</p>
+                    <select id="languageSelect" class="languageSelect">
+                        <option value="en">English</option>
+                        <option value="es">Hebrew</option>
+                    </select>
+                </div>
+            </div>
+            <div id="bookList" class="showItems">
+                <div class="table-row">
+                    <h2>Id</h2>
+                    <h2>Title</h2>
+                    <h2>Price</h2>
+                    <h2>Action</h2>
+                </div>
+            </div>
+            <div class="pagination">
+                <button id="prevBtn">Back</button>
+                <button id="nextBtn">Next</button>
+            </div>
+        </div>
+        <div class="book-details" id="bookDetails">
+            <h3>Book Details</h3>
+            <p id="detailTitle"></p>
+            <p>Price: <span id="detailPrice"></span></p>
+            <p>Rating: <span id="detailRating"></span></p>
+            <img id="detailImage" src="" alt="Book Cover" style="max-width: 200px;">
+        </div>
+    </div>
+<script src="model.js"></script>
+<script src="view.js"></script>
+<script src="main.js"></script>
+
+
+</body>
+</html>
+
