@@ -1,11 +1,38 @@
 document.addEventListener('DOMContentLoaded', () => {
-    books = Gbooks; 
+    let booksLS = getObjFromLS("bookList");
+    let currentPageLS = getObjFromLS("currentPage");
+    let showDetailsOnLS = getObjFromLS("showDetailsOn");
+    if (booksLS)
+        books = booksLS;
+    else 
+    {
+        books = Gbooks;
+        saveObjToLS("bookList", books)
+    }
+    if (currentPageLS)
+        currentPage = currentPageLS;
+    else
+    {
+        currentPage = 0;
+        saveObjToLS("currentPage", currentPage);
+    }
+    if (showDetailsOnLS)
+    {
+        showDetailsOn = showDetailsOnLS;
+        showDetails(showDetailsOn)
+    }
+    else
+    {
+        showDetailsOn = -1;
+        saveObjToLS("showDetailsOn", showDetailsOn);
+    }
     renderBookList(books);
 });
 
 document.getElementById("prevBtn").addEventListener("click", () => {
     if (currentPage > 0) {
-        currentPage--; 
+        currentPage--;
+        saveObjToLS("currentPage", currentPage); 
         renderBookList(books);
     }
 });
@@ -13,6 +40,7 @@ document.getElementById("prevBtn").addEventListener("click", () => {
 document.getElementById("nextBtn").addEventListener("click", () => {
     if ((currentPage + 1) * itemsPerPage < books.length) {
         currentPage++; 
+        saveObjToLS("currentPage", currentPage);
         renderBookList(books);
     }
 });
@@ -28,6 +56,7 @@ const paginationButtons = (length) => {
         pageButton.className = "pageBtn";
         pageButton.onclick = () => {
             currentPage = i;
+            saveObjToLS("currentPage", currentPage);
             renderBookList(books);
         };
         paginationContainer.appendChild(pageButton);
@@ -41,6 +70,7 @@ function showDetails(id) {
     document.getElementById('detailImage').src = book.link;
     document.getElementById('detailRating').innerHTML = getStarRating(book.rating);  
     showDetailsOn = id;
+    saveObjToLS("showDetailsOn", showDetailsOn);
 }
 
 function updateBook(id) {
@@ -64,7 +94,8 @@ function updateBook(id) {
 }
 
 function deleteBook(id) {
-    books = books.filter(book => book.id !== id);    
+    books = books.filter(book => book.id !== id);  
+    saveObjToLS("bookList", books)  
     renderBookList(books);
 
 }
@@ -125,7 +156,9 @@ document.getElementById("addBookForm").addEventListener("submit", (event) => {
         books.push(newBook);
         const totalPages = Math.ceil(books.length / itemsPerPage);
         currentPage = totalPages - 1; 
+        saveObjToLS("currentPage", currentPage);
     }
+    saveObjToLS("bookList", books)
     showDetails(id); 
 
     document.getElementById("addBook").style.display = "none"; 
@@ -149,6 +182,7 @@ function setRating(event) {
 const sortBooksByPrice = (ascending = true) => {
     books.sort((a, b) => ascending ? a.price - b.price : b.price - a.price);
     currentPage = 0;
+    saveObjToLS("currentPage", currentPage);
     renderBookList(books);
 };
 
@@ -163,6 +197,7 @@ const sortBooksByTitle = (ascending = true) => {
         : b.title.localeCompare(a.title)
     );
     currentPage = 0;
+    saveObjToLS("currentPage", currentPage);
     renderBookList(books);
 };
 
@@ -170,3 +205,15 @@ document.getElementById("sortTitleSelect").addEventListener("change", (event) =>
     const order = event.target.value;
     sortBooksByTitle(order === "asc");
 });
+
+function getFromLocalStorage(key) {
+    return localStorage.getItem(key);
+}
+
+function getObjFromLS(key) {
+    return JSON.parse(getFromLocalStorage(key));
+}
+
+function saveObjToLS(key, obj) {
+    localStorage.setItem(key, JSON.stringify(obj));
+}
