@@ -1,5 +1,6 @@
 let currentPage = 0; 
 const itemsPerPage = 5; 
+let showDetailsOn = -1;
 
 const getBook = (book) => {
     return `<div class="table-row">
@@ -48,6 +49,7 @@ function showDetails(id) {
     document.getElementById('detailPrice').innerText = `$${book.price.toFixed(2)}`;
     document.getElementById('detailImage').src = book.link;
     document.getElementById('detailRating').innerText = book.rating; 
+    showDetailsOn = id;
 }
 
 
@@ -87,9 +89,9 @@ document.getElementById("addBookForm").addEventListener("submit", (event) => {
 
     const mode = event.target.dataset.mode; 
     const bookId = event.target.dataset.id; 
-
+    id = parseInt(document.getElementById("bookId").value);
     const newBook = {
-        id: parseInt(document.getElementById("bookId").value),
+        id: id,
         title: document.getElementById("bookTitle").value,
         price: parseFloat(document.getElementById("bookPrice").value),
         rating: parseInt(document.getElementById("bookRating").value),
@@ -101,6 +103,8 @@ document.getElementById("addBookForm").addEventListener("submit", (event) => {
         if (index !== -1) {
             books[index] = newBook; 
         }
+        if(id === showDetailsOn)
+            showDetails(id)
     } else {
         books.push(newBook);
     }
