@@ -9,7 +9,7 @@ const getBook = (book) => {
             <div>$${book.price.toFixed(2)}</div>
             <div><button onclick="showDetails(${book.id})">read</button></div>
             <div><button onclick="updateBook(${book.id})">Update</button></div>
-            <div><button onclick="updateBook(${book.id})">delete</button></div>
+            <div><button onclick="deleteBook(${book.id})">delete</button></div>
             </div>`;
 
 };
@@ -66,6 +66,12 @@ function updateBook(id) {
 
     document.getElementById("addBookForm").dataset.mode = "update";
     document.getElementById("addBookForm").dataset.id = id; 
+}
+
+function deleteBook(id) {
+    books = books.filter(book => book.id !== id);    
+    renderBookList(books);
+
 }
 
 document.getElementById("NewBook").addEventListener("click", () => {
