@@ -1,0 +1,22 @@
+const Gbooks = [
+    { id: 1, title: "The Help", price: 10.99, rating: 0, link: "https://upload.wikimedia.org/wikipedia/en/e/ef/Thehelpbookcover.jpg" },
+    { id: 2, title: "The Secret Life of Bees", price: 8.99, rating: 0, link: "https://upload.wikimedia.org/wikipedia/en/1/1f/The_Secret_Life_of_Bees.jpg" },
+    { id: 3, title: "Gone with the winds", price: 12.99, rating: 0, link: "https://upload.wikimedia.org/wikipedia/en/thumb/6/6b/Gone_with_the_Wind_cover.jpg/220px-Gone_with_the_Wind_cover.jpg" },
+    { id: 4, title: "Big little lies", price: 9.99, rating: 0, link: "https://upload.wikimedia.org/wikipedia/en/1/1f/Big_Little_Lies_Cover.jpg" },
+    { id: 5, title: "The Hitchhiker's Guide to the Galaxy", price: 10.99, rating: 0, link: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS5Z4J6ieuZ8ymNONqTJpY5uMI2_aLLqmdX9A&s" },
+    { id: 6, title: "The Lord of the Rings", price: 15.99, rating: 0, link: "https://upload.wikimedia.org/wikipedia/en/e/e9/First_Single_Volume_Edition_of_The_Lord_of_the_Rings.gif" },
+    { id: 7, title: "The Hobbit", price: 12.99, rating: 0, link: "https://upload.wikimedia.org/wikipedia/en/thumb/3/30/Hobbit_cover.JPG/170px-Hobbit_cover.JPG" },
+    { id: 8, title: "The Nightingale", price: 9.99, rating: 0, link: "https://upload.wikimedia.org/wikipedia/en/thumb/b/b3/The_Nightingale_%282015_novel%29.jpg/220px-The_Nightingale_%282015_novel%29.jpg" },
+    { id: 9, title: "The four winds", price: 11.99, rating: 0, link: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSflVQHazUTLkqbp7TQNd2ACNaif-fdgxjwrw&s" },
+    { id: 10, title: "Percy Jackson and the Lightning Thief", rating: 0, price: 10.99, link: "https://diwanegypt.com/wp-content/uploads/2020/08/9780141346809.jpg" },
+    { id: 11, title: "Percy Jackson and the Sea of Monsters", rating: 0, price: 14.99, link: "https://upload.wikimedia.org/wikipedia/en/4/46/PercySeamonsters.gif" },
+    { id: 12, title: "Percy Jackson and the Titan's Curse", rating: 0, price: 19.99, link: "https://upload.wikimedia.org/wikipedia/en/3/3c/The_titan%27s_curse.jpg" },
+    { id: 13, title: "Pride and prejudice", price: 13.99, rating: 0, link: "https://www.gutenberg.org/cache/epub/1342/pg1342.cover.medium.jpg" },
+    { id: 14, title: "Harry Potter and the Philosopher's Stone", price: 10.99, rating: 0, link: "https://upload.wikimedia.org/wikipedia/en/6/6b/Harry_Potter_and_the_Philosopher%27s_Stone_Book_Cover.jpg" },
+    { id: 15, title: "Harry Potter and the Chamber of Secrets", price: 10.99, rating: 0, link: "https://upload.wikimedia.org/wikipedia/en/5/5c/Harry_Potter_and_the_Chamber_of_Secrets.jpg" },
+    { id: 16, title: "Harry Potter and the Prisoner of Azkaban", price: 10.99, rating: 0, link: "https://upload.wikimedia.org/wikipedia/en/a/a0/Harry_Potter_and_the_Prisoner_of_Azkaban.jpg" },
+    { id: 17, title: "Harry Potter and the Goblet of Fire", price: 10.99, rating: 0, link: "https://upload.wikimedia.org/wikipedia/en/b/b6/Harry_Potter_and_the_Goblet_of_Fire_cover.png" },
+    { id: 18, title: "Harry Potter and the Order of the Phoenix", price: 10.99, rating: 0, link: "https://upload.wikimedia.org/wikipedia/en/7/70/Harry_Potter_and_the_Order_of_the_Phoenix.jpg" },
+    { id: 19, title: "Harry Potter and the Half-Blood Prince", price: 10.99, rating: 0, link: "https://upload.wikimedia.org/wikipedia/en/b/b5/Harry_Potter_and_the_Half-Blood_Prince_cover.png" },
+    { id: 20, title: "Harry Potter and the Deathly Hallows", price: 10.99, rating: 0, link: "https://upload.wikimedia.org/wikipedia/en/a/a9/Harry_Potter_and_the_Deathly_Hallows.jpg" }
+];
