@@ -85,6 +85,8 @@ function updateBook(id) {
 
     document.getElementById("addBookForm").dataset.mode = "update";
     document.getElementById("addBookForm").dataset.id = id; 
+    document.getElementById("addOrUpdate").innerText = "Update"; 
+
 }
 
 function deleteBook(id) {
@@ -99,6 +101,8 @@ const resetFormFields = () => {
     document.getElementById("bookPrice").value = '';
     document.getElementById("bookRating").value = '';
     document.getElementById("bookImage").value = '';
+    document.getElementById("addOrUpdate").innerText = "Add"; 
+
 };
 
 document.getElementById("NewBook").addEventListener("click", () => {
