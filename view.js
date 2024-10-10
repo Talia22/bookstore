@@ -1,3 +1,6 @@
+let currentPage = 0; 
+const itemsPerPage = 5; 
+
 const getBook = (book) => {
     return `<div class="table-row">
             <div>${book.id}</div>
@@ -11,9 +14,32 @@ const getBook = (book) => {
 };
 
 const renderBookList = (books) => {
-    let htmlbooks = books.map((book) => getBook(book)).join("");
+    const startIndex = currentPage * itemsPerPage; 
+    const endIndex = startIndex + itemsPerPage;
+
+    const paginatedBooks = books.slice(startIndex, endIndex);
+
+    document.getElementById("bookList").innerHTML = '';
+
+    let htmlbooks = paginatedBooks.map((book) => getBook(book)).join("");
     document.getElementById("bookList").innerHTML += htmlbooks;
+    document.getElementById("prevBtn").disabled = currentPage === 0;
+    document.getElementById("nextBtn").disabled = endIndex >= books.length;
 };
+
+document.getElementById("prevBtn").addEventListener("click", () => {
+    if (currentPage > 0) {
+        currentPage--; 
+        renderBookList(books);
+    }
+});
+
+document.getElementById("nextBtn").addEventListener("click", () => {
+    if ((currentPage + 1) * itemsPerPage < books.length) {
+        currentPage++; 
+        renderBookList(books);
+    }
+});
 
 
 function showDetails(id) {
@@ -21,9 +47,64 @@ function showDetails(id) {
     document.getElementById('detailTitle').innerText = book.title;
     document.getElementById('detailPrice').innerText = `$${book.price.toFixed(2)}`;
     document.getElementById('detailImage').src = book.link;
-    document.getElementById('detailRating').innerText = '7'; 
+    document.getElementById('detailRating').innerText = book.rating; 
 }
 
+
 function updateBook(id) {
-    alert("hello");
+    const book = books.find(b => b.id === id);
+
+    document.getElementById("bookId").value = book.id;
+    document.getElementById("bookTitle").value = book.title;
+    document.getElementById("bookPrice").value = book.price;
+    document.getElementById("bookRating").value = book.rating;
+    document.getElementById("bookImage").value = book.link;
+
+    document.getElementById("addBook").style.display = "block"; 
+
+    document.getElementById("addBookForm").dataset.mode = "update";
+    document.getElementById("addBookForm").dataset.id = id; 
 }
+
+document.getElementById("NewBook").addEventListener("click", () => {
+    document.getElementById("addBook").style.display = "block"; 
+});
+
+document.getElementById("closeModal").addEventListener("click", () => {
+    document.getElementById("addBook").style.display = "none"; 
+});
+
+window.addEventListener("click", (event) => {
+    const modal = document.getElementById("addBook");
+    if (event.target === modal) {
+        modal.style.display = "none"; 
+    }
+});
+
+
+document.getElementById("addBookForm").addEventListener("submit", (event) => {
+    event.preventDefault(); 
+
+    const mode = event.target.dataset.mode; 
+    const bookId = event.target.dataset.id; 
+
+    const newBook = {
+        id: parseInt(document.getElementById("bookId").value),
+        title: document.getElementById("bookTitle").value,
+        price: parseFloat(document.getElementById("bookPrice").value),
+        rating: parseInt(document.getElementById("bookRating").value),
+        link: document.getElementById("bookImage").value,
+    };
+
+    if (mode === "update") {
+        const index = books.findIndex(b => b.id === parseInt(bookId));
+        if (index !== -1) {
+            books[index] = newBook; 
+        }
+    } else {
+        books.push(newBook);
+    }
+
+    document.getElementById("addBook").style.display = "none"; 
+    renderBookList(books);
+});

@@ -14,7 +14,34 @@
     <div class="container">
         <div class="info">
             <div class="top">
-                <button> + New Book</button>
+                <button id="NewBook"> + New Book</button>
+                    <div id="addBook" class="addBook">
+                        <span class="close" id="closeModal">&times;</span>
+                        <h2>+ New Book</h2>
+                        <form id="addBookForm">
+                            <div class="form-info">
+                                <label for="bookId">Id:</label>
+                                <input type="number" id="bookId" required>
+                            </div>
+                            <div class="form-info">
+                                <label for="bookTitle">Title:</label>
+                                <input type="text" id="bookTitle" required>
+                            </div>
+                            <div class="form-info">
+                                <label for="bookPrice">Price:</label>
+                                <input type="number" id="bookPrice" required>
+                            </div>
+                            <div class="form-info">
+                                <label for="bookRating">Rating:</label>
+                                <input type="number" id="bookRating" required>
+                            </div>
+                            <div class="form-info">
+                                <label for="bookImage">Image:</label>
+                                <input type="text" id="bookImage" required>
+                            </div>
+                            <button type="submit">Add</button>
+                        </form>
+                    </div>
                 <div class="top">
                     <p>Load Data</p>
                     <select id="languageSelect" class="languageSelect">
@@ -23,13 +50,14 @@
                     </select>
                 </div>
             </div>
-            <div id="bookList" class="showItems">
+            <div class="showItems">
                 <div class="table-row">
                     <h2>Id</h2>
                     <h2>Title</h2>
                     <h2>Price</h2>
                     <h2>Action</h2>
                 </div>
+                <div id="bookList"></div>
             </div>
             <div class="pagination">
                 <button id="prevBtn">Back</button>
@@ -44,9 +72,11 @@
             <img id="detailImage" src="" alt="Book Cover" style="max-width: 200px;">
         </div>
     </div>
-<script src="model.js"></script>
-<script src="view.js"></script>
-<script src="main.js"></script>
+
+    <script src="model.js"></script>
+    <script src="dump.js"></script>
+    <script src="view.js"></script>
+    <script src="main.js"></script>
 
 
 </body>

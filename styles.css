@@ -70,7 +70,40 @@ header {
     margin-top: 20px;
 }
 
+.addBook {
+    display: none; 
+    position: fixed; 
+    right: 0;
+    top: 0;
+    height: 100%; 
+    background-color: rgb(0,0,0); 
+    background-color: rgba(0,0,0,0.8); 
+    width: 300px; 
+    padding: 20px;
+    color: #ccc;
+}
 
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover{
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.form-info {
+    margin-bottom: 15px; 
+}
+
+.addBook label {
+    display: block; 
+    margin-bottom: 5px; 
+}
 
 
 
