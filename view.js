@@ -1,7 +1,3 @@
-let currentPage = 0; 
-const itemsPerPage = 5; 
-let showDetailsOn = -1;
-
 const getBook = (book) => {
     return `<div class="table-row">
             <div>${book.id}</div>
