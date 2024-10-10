@@ -116,4 +116,16 @@ header {
     font-size: 14px;  
 }
 
+.delete-icon {
+    width: 20px; 
+    height: 20px;
+    vertical-align: middle;
+}
+
+.noBook{
+    display: none;
+    text-align: center;
+    margin-top: 20px;
+}
+
 
