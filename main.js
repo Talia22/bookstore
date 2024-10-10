@@ -25,6 +25,8 @@ document.addEventListener('DOMContentLoaded', () => {
     {
         showDetailsOn = -1;
         saveObjToLS("showDetailsOn", showDetailsOn);
+        document.getElementById('noBook').style.display = 'none';
+        document.getElementById('bookShowing').style.display = 'none';
     }
     renderBookList(books);
 });
@@ -63,12 +65,25 @@ const paginationButtons = (length) => {
     }
 };
 
+
 function showDetails(id) {
     const book = books.find(b => b.id === id);
+    const noBookMessage = document.getElementById('noBook');
+    const bookDetail = document.getElementById('bookShowing');
+    if(!book) {
+        noBookMessage.style.display = 'block';
+        bookDetail.style.display = 'none'; 
+        return;  
+    }
+
+    noBookMessage.style.display = 'none';
+
     document.getElementById('detailTitle').innerText = book.title;
     document.getElementById('detailPrice').innerText = `$${book.price.toFixed(2)}`;
     document.getElementById('detailImage').src = book.link;
     document.getElementById('detailRating').innerHTML = getStarRating(book.rating);  
+    bookDetail.style.display = 'block'; 
+
     showDetailsOn = id;
     saveObjToLS("showDetailsOn", showDetailsOn);
 }
@@ -94,7 +109,12 @@ function updateBook(id) {
 }
 
 function deleteBook(id) {
-    books = books.filter(book => book.id !== id);  
+    books = books.filter(book => book.id !== id);
+    if (showDetailsOn === id) {
+        showDetailsOn = -1;
+        saveObjToLS("showDetailsOn", showDetailsOn);
+        showDetails(id);
+    }  
     saveObjToLS("bookList", books)  
     renderBookList(books);
 
