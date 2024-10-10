@@ -24,6 +24,8 @@ const renderBookList = (books) => {
 
     let htmlbooks = paginatedBooks.map((book) => getBook(book)).join("");
     document.getElementById("bookList").innerHTML += htmlbooks;
+    paginationButtons(books.length);
+
     document.getElementById("prevBtn").disabled = currentPage === 0;
     document.getElementById("nextBtn").disabled = endIndex >= books.length;
 };
@@ -41,6 +43,23 @@ document.getElementById("nextBtn").addEventListener("click", () => {
         renderBookList(books);
     }
 });
+
+const paginationButtons = (length) => {
+    const totalPages = Math.ceil(length / itemsPerPage);
+    const paginationContainer = document.getElementById("paginationButtons");
+    paginationContainer.innerHTML = '';
+
+    for (let i = 0; i < totalPages; i++) {
+        const pageButton = document.createElement("button");
+        pageButton.textContent = i + 1;
+        pageButton.className = "pageBtn";
+        pageButton.onclick = () => {
+            currentPage = i;
+            renderBookList(books);
+        };
+        paginationContainer.appendChild(pageButton);
+    }
+};
 
 
 function showDetails(id) {
@@ -74,7 +93,16 @@ function deleteBook(id) {
 
 }
 
+const resetFormFields = () => {
+    document.getElementById("bookId").value = '';
+    document.getElementById("bookTitle").value = '';
+    document.getElementById("bookPrice").value = '';
+    document.getElementById("bookRating").value = '';
+    document.getElementById("bookImage").value = '';
+};
+
 document.getElementById("NewBook").addEventListener("click", () => {
+    resetFormFields();  
     document.getElementById("addBook").style.display = "block"; 
 });
 
@@ -88,7 +116,6 @@ window.addEventListener("click", (event) => {
         modal.style.display = "none"; 
     }
 });
-
 
 document.getElementById("addBookForm").addEventListener("submit", (event) => {
     event.preventDefault(); 
@@ -111,10 +138,23 @@ document.getElementById("addBookForm").addEventListener("submit", (event) => {
         }
         if(id === showDetailsOn)
             showDetails(id)
+        document.getElementById("addBookForm").dataset.mode = "new";
     } else {
         books.push(newBook);
+        const totalPages = Math.ceil(books.length / itemsPerPage);
+        currentPage = totalPages - 1; 
     }
+    showDetails(id); 
 
     document.getElementById("addBook").style.display = "none"; 
     renderBookList(books);
 });
+
+
+
+
+
+
+
+
+
