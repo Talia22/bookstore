@@ -1,5 +1,5 @@
 const getBook = (book) => {
-    return `<div class="table-row">
+    return `<div class="table-row-book">
             <div>${book.id}</div>
             <div><a href="#" onclick="showDetails(${book.id})">${book.title}</a></div>
             <div>$${book.price.toFixed(2)}</div>
@@ -7,14 +7,6 @@ const getBook = (book) => {
             <div><button onclick="updateBook(${book.id})">Update</button></div>
             <img src="https://cdn-icons-png.flaticon.com/512/1214/1214428.png" alt="Delete" class="delete-icon" onclick="deleteBook(${book.id})" >
             </div>`;
-};
-
-const getStarRating = (rating) => {
-    let stars = '';
-    for (let i = 1; i <= 5; i++) {
-        stars += `<span class="star ${i <= rating ? 'filled' : ''}">&#9733;</span>`;
-    }
-    return stars;
 };
 
 const renderBookList = (books) => {
