@@ -19,20 +19,17 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     if (langLS){
         lang = langLS;
-        renderBookList(books);
-        updateLanguage(lang)
         document.getElementById('languageSelect').value = lang; 
     }
     else{
         lang = "en";
         saveObjToLS("lang", lang);
         document.getElementById('languageSelect').value = lang; 
-        renderBookList(books);
     }
     if (showDetailsOnLS)
     {
         showDetailsOn = showDetailsOnLS;
-        showDetails(showDetailsOn)
+        renderBookDetails(showDetailsOn);
     }
     else
     {
@@ -41,4 +38,6 @@ document.addEventListener('DOMContentLoaded', () => {
         document.getElementById('noBook').style.display = 'block';
         document.getElementById('bookShowing').style.display = 'none';
     }
+    renderBookList(books);
+
 });
