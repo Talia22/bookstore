@@ -139,41 +139,6 @@ window.addEventListener("click", (event) => {
     }
 });
 
-// document.getElementById("addBookForm").addEventListener("submit", (event) => {
-    // event.preventDefault(); 
-    
-    // const mode = event.target.dataset.mode; 
-    // const bookId = event.target.dataset.id; 
-    // id = parseInt(document.getElementById("bookId").value);
-    // const newBook = {
-    //     id: id,
-    //     title: document.getElementById("bookTitle").value,
-    //     price: parseFloat(document.getElementById("bookPrice").value),
-    //     rating: parseInt(document.getElementById("bookRating").value),
-    //     link: document.getElementById("bookImage").value,
-    // };
-
-    // if (mode === "update") {
-    //     const index = books.findIndex(b => b.id === parseInt(bookId));
-    //     if (index !== -1) {
-    //         books[index] = newBook; 
-    //     }
-    //     if(id === showDetailsOn)
-    //         showDetails(id)
-    //     document.getElementById("addBookForm").dataset.mode = "new";
-    // } else {
-    //     books.push(newBook);
-    //     const totalPages = Math.ceil(books.length / itemsPerPage);
-    //     currentPage = totalPages - 1; 
-    //     saveObjToLS("currentPage", currentPage);
-    // }
-    // saveObjToLS("bookList", books)
-    // showDetails(id); 
-
-    // document.getElementById("addBook").style.display = "none"; 
-    // renderBookList(books);
-// });
-
 function addBook(event){
     event.preventDefault(); 
     
