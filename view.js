@@ -3,8 +3,8 @@ const getBook = (book) => {
             <div>${book.id}</div>
             <div><a href="#" onclick="showDetails(${book.id})">${book.title}</a></div>
             <div>$${book.price.toFixed(2)}</div>
-            <div><button onclick="showDetails(${book.id})">read</button></div>
-            <div><button onclick="updateBook(${book.id})">Update</button></div>
+            <div><button onclick="showDetails(${book.id})" data-translate="readButton">read</button></div>
+            <div><button onclick="updateBook(${book.id})"data-translate="updateButton">update</button></div>
             <img src="https://cdn-icons-png.flaticon.com/512/1214/1214428.png" alt="Delete" class="delete-icon" onclick="deleteBook(${book.id})" >
             </div>`;
 };
@@ -28,4 +28,5 @@ const renderBookList = (books) => {
 
     document.getElementById("prevBtn").disabled = currentPage === 0;
     document.getElementById("nextBtn").disabled = endIndex >= books.length;
+    updateLanguage(lang);
 };
