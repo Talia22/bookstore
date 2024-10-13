@@ -55,31 +55,8 @@ const getStarRating = (rating) => {
     return stars;
 };
 
-function showDetails(id) {
-    const book = books.find(b => b.id === id);
-    const noBookMessage = document.getElementById('noBook');
-    const bookDetail = document.getElementById('bookShowing');
-    if(!book) {
-        noBookMessage.style.display = 'block';
-        bookDetail.style.display = 'none'; 
-        return;  
-    }
-
-    noBookMessage.style.display = 'none';
-
-    document.getElementById('detailTitle').innerText = book.title;
-    document.getElementById('detailPrice').innerText = `$${book.price.toFixed(2)}`;
-    document.getElementById('detailImage').src = book.link;
-    document.getElementById('detailRating').innerHTML = getStarRating(book.rating);  
-    bookDetail.style.display = 'block'; 
-
-    showDetailsOn = id;
-    saveObjToLS("showDetailsOn", showDetailsOn);
-}
-
 function updateBook(id) {
-    const book = books.find(b => b.id === id);
-
+    const book = getBookById(id);
     document.getElementById("bookId").value = book.id;
     document.getElementById("bookTitle").value = book.title;
     document.getElementById("bookPrice").value = book.price;
@@ -103,7 +80,7 @@ function deleteBook(id) {
     if (showDetailsOn === id) {
         showDetailsOn = -1;
         saveObjToLS("showDetailsOn", showDetailsOn);
-        showDetails(id);
+        renderBookDetails(id);
     }  
     saveObjToLS("bookList", books)  
     renderBookList(books);
@@ -158,7 +135,7 @@ function addBook(event){
             books[index] = newBook; 
         }
         if(id === showDetailsOn)
-            showDetails(id)
+            renderBookDetails(id);
         document.getElementById("addBookForm").dataset.mode = "new";
     } else {
         books.push(newBook);
@@ -167,8 +144,7 @@ function addBook(event){
         saveObjToLS("currentPage", currentPage);
     }
     saveObjToLS("bookList", books)
-    showDetails(id); 
-
+    renderBookDetails(id);
     document.getElementById("addBook").style.display = "none"; 
     renderBookList(books);
 
