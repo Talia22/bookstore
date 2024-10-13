@@ -9,30 +9,30 @@
 
 <body>
     <header>
-        <h1>Book Shop</h1>
+        <h1 data-translate="title">Book Shop</h1>
     </header>
     <div class="container">
         <div class="info">
             <div class="top">
-                <button id="NewBook"> + New Book</button>
+                <button id="NewBook" data-translate="newBook"> + New Book</button>
                     <div id="addBook" class="addBook">
                         <span class="close" id="closeModal">&times;</span>
-                        <h2>+ New Book</h2>
+                        <h2 data-translate="newBook">+ New Book</h2>
                         <form id="addBookForm" onsubmit="addBook(event)">
                             <div class="form-info">
-                                <label for="bookId">Id:</label>
+                                <label for="bookId" data-translate="bookIdLabel">Id:</label>
                                 <input type="number" id="bookId" required>
                             </div>
                             <div class="form-info">
-                                <label for="bookTitle">Title:</label>
+                                <label for="bookTitle" data-translate="bookTitleLabel">Title:</label>
                                 <input type="text" id="bookTitle" required>
                             </div>
                             <div class="form-info">
-                                <label for="bookPrice">Price:</label>
+                                <label for="bookPrice" data-translate="bookPriceLabel">Price:</label>
                                 <input type="number" id="bookPrice" required>
                             </div>
                             <div class="form-info">
-                                <label for="bookRating">Rating:</label>
+                                <label for="bookRating" data-translate="bookRatingLabel">Rating:</label>
                                 <input type="number" id="bookRating" min="1" max="5" required style="display: none;">
                                 <div id="ratingStars" class="ratingStars" onclick="setRating(event)">
                                     <span class="star" data-value="1">&#9733;</span>
@@ -43,55 +43,55 @@
                                 </div>
                             </div>
                             <div class="form-info">
-                                <label for="bookImage">Image:</label>
+                                <label for="bookImage" data-translate="bookImageLabel">Image:</label>
                                 <input type="text" id="bookImage" required>
                             </div>
-                            <button id="addOrUpdate" type="submit">Add</button>
+                            <button id="addOrUpdate" type="submit" data-translate="addButton">Add</button>
                         </form>
                     </div>
                 <div>
-                    <button class="load-data" onclick="loadData()">Load data</button>
+                    <button class="load-data" data-translate="loadDataButton" onclick="loadData()">Load data</button>
                     <select id="languageSelect" class="languageSelect">
                         <option value="en">English</option>
-                        <option value="es">Hebrew</option>
+                        <option value="he">Hebrew</option>
                     </select>
                 </div>
             </div>
             <div class="showItems">
                 <div class="table-row">
-                    <h2>Id</h2>
-                    <h2>Title
+                    <h2 data-translate="idHeader">Id</h2>
+                    <h2 data-translate="titleHeader">Title
                         <select id="sortTitleSelect" class="sortSelect">
                             <option value="asc">↑</option>
                             <option value="desc">↓</option>
                         </select>
                     </h2>
-                    <h2>Price
+                    <h2 data-translate="priceHeader">Price
                         <select id="sortSelect" class="sortSelect">
                             <option value="asc">↑</option>
                             <option value="desc">↓</option>
                         </select>
                     </h2>
-                    <h2>Action</h2>
+                    <h2 data-translate="actionHeader">Action</h2>
                 </div>
                 <div id="bookList"></div>
             </div>
             <div class="pagination">
-                <button id="prevBtn">Back</button>
+                <button id="prevBtn" data-translate="backButton">Back</button>
                 <div id="paginationButtons"></div>
-                <button id="nextBtn">Next</button>
+                <button id="nextBtn" data-translate="nextButton">Next</button>
             </div>
         </div>
         <div class="book-details" id="bookDetails">
             <div class="bookShowing" id="bookShowing">
-                <h3>Book Details</h3>
+                <h3 data-translate="bookDetailsTitle">Book Details</h3>
                 <p id="detailTitle"></p>
-                <p>Price: <span id="detailPrice"></span></p>
-                <p>Rating: <span id="detailRating"></span></p>
+                <p><span data-translate="bookDetailsPrice">Price: </span><span id="detailPrice"></span></p>
+                <p><span data-translate="bookDetailsRating">Rating: </span><span id="detailRating"></span></p>
                 <img id="detailImage" src="" alt="Book Cover" style="max-width: 200px;">        
             </div>
             <div class="noBook" id="noBook">
-                <p>No book chosen yet.</p>
+                <p data-translate="noBookMessage">No book chosen yet.</p>
             </div>
         </div>
     </div>
@@ -102,6 +102,7 @@
     <script src="main.js"></script>
     <script src="utils.js"></script>
     <script src="controller.js"></script>
+    <script src="translation.js"></script>
 
 
 </body>

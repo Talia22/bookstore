@@ -93,7 +93,8 @@ function updateBook(id) {
 
     document.getElementById("addBookForm").dataset.mode = "update";
     document.getElementById("addBookForm").dataset.id = id; 
-    document.getElementById("addOrUpdate").innerText = "Update"; 
+    document.getElementById("addOrUpdate").innerText = translations[lang]["updateButton"] || Update;
+
 
 }
 
@@ -106,7 +107,6 @@ function deleteBook(id) {
     }  
     saveObjToLS("bookList", books)  
     renderBookList(books);
-
 }
 
 const resetFormFields = () => {
@@ -119,8 +119,7 @@ const resetFormFields = () => {
     document.getElementById('bookRating').value = ''; 
 
     document.getElementById("bookImage").value = '';
-    document.getElementById("addOrUpdate").innerText = "Add"; 
-
+    document.getElementById("addOrUpdate").innerText = translations[lang]["addButton"] || Add;
 };
 
 document.getElementById("NewBook").addEventListener("click", () => {
@@ -226,4 +225,19 @@ function loadData(){
     document.getElementById('noBook').style.display = 'block';
     document.getElementById('bookShowing').style.display = 'none';
     renderBookList(books);
+}
+
+document.getElementById('languageSelect').addEventListener('change', (event) => {
+    const selectedLanguage = event.target.value;
+    lang = selectedLanguage;
+    saveObjToLS("lang", selectedLanguage);
+    updateLanguage(selectedLanguage); 
+});
+
+function updateLanguage(language) {
+    const elements = document.querySelectorAll('[data-translate]');
+    elements.forEach(element => {
+        const key = element.getAttribute('data-translate');
+        element.textContent = translations[language][key] || element.textContent;
+    });
 }
